@@ -1,0 +1,32 @@
+<%# Fiche détaillée d'un événement. %>
+<%- include('../partials/tete') %>
+<section class="section fiche">
+  <p><a href="/evenements">Retour aux événements</a></p>
+  <span class="etiquette"><%= evenement.categorie %></span>
+  <h1><%= evenement.titre %></h1>
+  <p class="date"><%= formaterDate(evenement.date) %></p>
+  <p><strong>Lieu :</strong> <%= evenement.lieu %></p>
+  <p><strong>Organisé par :</strong> <a href="/associations/<%= evenement.association._id %>"><%= evenement.association.nom %></a></p>
+  <p><%= evenement.description %></p>
+  <p><strong>Places restantes :</strong> <%= placesRestantes %> sur <%= evenement.capacite %></p>
+
+  <%# Le bouton change selon la situation du visiteur. %>
+  <% if (inscription) { %>
+    <p class="confirme">Tu es inscrit à cet événement.</p>
+    <%# L'annulation est un POST car elle modifie des données. %>
+    <form method="post" action="/mes-inscriptions/<%= inscription._id %>/annuler">
+      <%- include('../partials/csrf') %>
+      <button class="bouton bouton-secondaire">Annuler mon inscription</button>
+    </form>
+  <% } else if (!locals.utilisateur) { %>
+    <a class="bouton" href="/connexion">Connecte-toi pour t'inscrire</a>
+  <% } else if (placesRestantes <= 0) { %>
+    <p><strong>Cet événement est complet.</strong></p>
+  <% } else { %>
+    <form method="post" action="/evenements/<%= evenement._id %>/inscription">
+      <%- include('../partials/csrf') %>
+      <button class="bouton">M'inscrire</button>
+    </form>
+  <% } %>
+</section>
+<%- include('../partials/pied') %>

@@ -1,0 +1,8 @@
+<%# Page affichée pour une erreur : page introuvable, accès interdit, etc. %>
+<%- include('../partials/tete') %>
+<section class="section formulaire">
+  <h1>Erreur <%= code %></h1>
+  <p><%= texteErreur %></p>
+  <a class="bouton" href="/">Retour à l'accueil</a>
+</section>
+<%- include('../partials/pied') %>

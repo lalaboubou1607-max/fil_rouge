@@ -1,0 +1,32 @@
+<%# Haut de page du back-office : il est séparé de celui du site public. %>
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title><%= titre %> | Back-office ISEN</title>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap">
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body class="admin">
+  <%# Le menu latéral du back-office. %>
+  <aside class="admin-menu">
+    <a href="/admin"><img src="/images/logo-isen.png" alt="Back-office, accueil"></a>
+    <nav aria-label="Menu du back-office">
+      <a href="/admin">Tableau de bord</a>
+      <a href="/admin/associations">Associations</a>
+      <a href="/admin/evenements">Événements</a>
+      <%# Ce lien n'apparaît que pour les administrateurs. %>
+      <% if (utilisateur.role === 'admin') { %>
+        <a href="/admin/utilisateurs">Utilisateurs</a>
+      <% } %>
+      <a href="/">Voir le site public</a>
+    </nav>
+  </aside>
+  <div class="admin-contenu">
+    <%# Le message de l'action précédente. %>
+    <% if (locals.message) { %>
+      <p class="message" role="status"><%= message %></p>
+    <% } %>
+    <main>

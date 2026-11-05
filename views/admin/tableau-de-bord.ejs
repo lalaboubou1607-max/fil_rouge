@@ -1,0 +1,9 @@
+<%# Page d'accueil du back-office avec trois chiffres clés. %>
+<%- include('../partials/admin-tete') %>
+<h1>Bonjour <%= utilisateur.prenom %></h1>
+<div class="grille">
+  <div class="carte chiffre"><strong><%= nbAssociations %></strong> association(s)</div>
+  <div class="carte chiffre"><strong><%= nbEvenements %></strong> événement(s)</div>
+  <div class="carte chiffre"><strong><%= nbBrouillons %></strong> brouillon(s)</div>
+</div>
+<%- include('../partials/admin-pied') %>

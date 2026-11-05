@@ -1,0 +1,35 @@
+<%# Liste des événements avec recherche et filtre. %>
+<%- include('../partials/tete') %>
+<section class="section">
+  <h1>Événements</h1>
+
+  <%# Un formulaire GET place la recherche dans l'adresse, qu'on peut donc partager. %>
+  <form class="filtres" method="get" action="/evenements">
+    <label>Rechercher
+      <%# value garde le texte saisi après l'envoi. %>
+      <input type="search" name="q" value="<%= recherche %>" placeholder="Titre ou description">
+    </label>
+    <label>Catégorie
+      <select name="categorie">
+        <option value="">Toutes</option>
+        <%# Une option par catégorie, la catégorie choisie reste sélectionnée. %>
+        <% categories.forEach((nom) => { %>
+          <option value="<%= nom %>" <%= nom === categorie ? 'selected' : '' %>><%= nom %></option>
+        <% }) %>
+      </select>
+    </label>
+    <button class="bouton">Filtrer</button>
+  </form>
+
+  <%# Message si la recherche ne trouve rien. %>
+  <% if (evenements.length === 0) { %>
+    <p>Aucun événement ne correspond à ta recherche.</p>
+  <% } %>
+  <div class="grille">
+    <%# Une carte par événement. %>
+    <% evenements.forEach((evenement) => { %>
+      <%- include('../partials/carte-evenement', { evenement }) %>
+    <% }) %>
+  </div>
+</section>
+<%- include('../partials/pied') %>

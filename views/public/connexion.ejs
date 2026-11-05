@@ -1,0 +1,15 @@
+<%# Formulaire de connexion. %>
+<%- include('../partials/tete') %>
+<section class="section formulaire">
+  <h1>Connexion</h1>
+  <form method="post" action="/connexion">
+    <%- include('../partials/csrf') %>
+    <%# type="email" fait vérifier le format par le navigateur. %>
+    <label>Email <input type="email" name="email" autocomplete="email" required></label>
+    <%# type="password" masque les caractères saisis. %>
+    <label>Mot de passe <input type="password" name="motDePasse" autocomplete="current-password" required></label>
+    <button class="bouton">Se connecter</button>
+  </form>
+  <p>Pas encore de compte ? <a href="/inscription">Créer un compte</a></p>
+</section>
+<%- include('../partials/pied') %>

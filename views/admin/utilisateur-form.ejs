@@ -1,0 +1,25 @@
+<%# Formulaire pour choisir le rôle et l'association d'un compte. %>
+<%- include('../partials/admin-tete') %>
+<h1><%= compte.prenom %> <%= compte.nom %></h1>
+<form class="formulaire-admin" method="post" action="/admin/utilisateurs/<%= compte._id %>/modifier">
+  <%- include('../partials/csrf') %>
+  <label>Rôle
+    <select name="role">
+      <%# Une option par rôle. %>
+      <% roles.forEach((role) => { %>
+        <option value="<%= role %>" <%= compte.role === role ? 'selected' : '' %>><%= role %></option>
+      <% }) %>
+    </select>
+  </label>
+  <label>Association (pour un responsable)
+    <select name="association">
+      <option value="">Aucune</option>
+      <%# Une option par association. %>
+      <% associations.forEach((association) => { %>
+        <option value="<%= association._id %>" <%= String(compte.association) === String(association._id) ? 'selected' : '' %>><%= association.nom %></option>
+      <% }) %>
+    </select>
+  </label>
+  <button class="bouton">Enregistrer</button>
+</form>
+<%- include('../partials/admin-pied') %>

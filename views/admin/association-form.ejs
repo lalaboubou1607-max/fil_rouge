@@ -1,0 +1,14 @@
+<%# Le même formulaire sert à créer et à modifier une association. %>
+<%- include('../partials/admin-tete') %>
+<h1><%= titre %></h1>
+<%# On envoie vers l'adresse actuelle, qui dépend de la création ou de la modification. %>
+<form class="formulaire-admin" method="post" action="<%= association ? `/admin/associations/${association._id}/modifier` : '/admin/associations/nouvelle' %>">
+  <%- include('../partials/csrf') %>
+  <%# Le "?." évite une erreur quand association vaut null. %>
+  <label>Nom <input name="nom" value="<%= association?.nom ?? '' %>" required></label>
+  <label>Description <textarea name="description" rows="5" required><%= association?.description ?? '' %></textarea></label>
+  <label>Contact <input name="contact" value="<%= association?.contact ?? '' %>" required></label>
+  <label>Adresse du logo (facultatif) <input name="logo" value="<%= association?.logo ?? '' %>" placeholder="/images/mon-logo.png"></label>
+  <button class="bouton">Enregistrer</button>
+</form>
+<%- include('../partials/admin-pied') %>

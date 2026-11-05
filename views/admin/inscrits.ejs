@@ -1,0 +1,23 @@
+<%# Liste des personnes inscrites à un événement. %>
+<%- include('../partials/admin-tete') %>
+<h1><%= evenement.titre %></h1>
+<p><%= inscriptions.length %> inscrit(s) sur <%= evenement.capacite %> places</p>
+<div class="tableau-conteneur">
+  <table>
+    <thead>
+      <tr><th>Nom</th><th>Email</th><th>Date d'inscription</th></tr>
+    </thead>
+    <tbody>
+      <%# Une ligne par inscrit. %>
+      <% inscriptions.forEach((inscription) => { %>
+        <tr>
+          <td><%= inscription.utilisateur?.prenom %> <%= inscription.utilisateur?.nom %></td>
+          <td><%= inscription.utilisateur?.email %></td>
+          <td><%= formaterDate(inscription.dateInscription) %></td>
+        </tr>
+      <% }) %>
+    </tbody>
+  </table>
+</div>
+<p><a href="/admin/evenements">Retour aux événements</a></p>
+<%- include('../partials/admin-pied') %>

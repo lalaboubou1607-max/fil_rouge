@@ -1,0 +1,21 @@
+{
+  // Ce fichier dit à TypeScript comment transformer notre code en JavaScript.
+  "compilerOptions": {
+    // La version de JavaScript produite : ES2022 est bien comprise par Node.js.
+    "target": "ES2022",
+    // Le système de modules classique de Node.js (celui de require).
+    "module": "CommonJS",
+    // Dossier où se trouve notre code TypeScript.
+    "rootDir": "src",
+    // Dossier où TypeScript écrit le JavaScript généré.
+    "outDir": "dist",
+    // Active tous les contrôles stricts : plus d'erreurs trouvées avant le lancement.
+    "strict": true,
+    // Permet d'écrire "import express from 'express'" simplement.
+    "esModuleInterop": true,
+    // Ne vérifie pas le code interne des bibliothèques, pour aller plus vite.
+    "skipLibCheck": true
+  },
+  // On ne compile que le dossier src.
+  "include": ["src"]
+}

@@ -1,0 +1,500 @@
+/* Les couleurs relevées sur le site de l'ISEN Méditerranée, regroupées dans des variables. */
+:root {
+  /* Le bleu marine de l'en-tête. */
+  --bleu: #003879;
+  /* Le rouge des boutons. */
+  --rouge: #db0033;
+  /* Le saumon des accents. */
+  --saumon: #f0926f;
+  /* Le fond clair des sections. */
+  --fond: #f4f7fb;
+  /* La couleur du texte. */
+  --texte: #1c2a3a;
+  /* La couleur du texte secondaire. */
+  --discret: #5a6b7e;
+}
+
+/* box-sizing compte les bordures dans la largeur : les calculs sont plus simples. */
+* {
+  box-sizing: border-box;
+}
+
+/* Le style de base de toute la page. */
+body {
+  margin: 0;
+  color: var(--texte);
+  background: #fff;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  line-height: 1.6;
+}
+
+/* Les grands titres sont en bleu et bien gras, comme sur le site de l'ISEN. */
+h1,
+h2,
+h3 {
+  color: var(--bleu);
+  font-weight: 800;
+  line-height: 1.2;
+}
+
+/* Les liens reprennent le bleu de l'école. */
+a {
+  color: var(--bleu);
+}
+
+/* Les images ne dépassent jamais de leur conteneur. */
+img {
+  max-width: 100%;
+}
+
+/* L'en-tête : le logo à gauche et le menu à droite. */
+.entete {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 16px 40px;
+  background: var(--bleu);
+}
+
+/* La hauteur du logo dans l'en-tête. */
+.entete-logo img {
+  display: block;
+  height: 48px;
+}
+
+/* Le menu : les liens sont alignés et passent à la ligne si besoin. */
+.menu {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 20px;
+}
+
+/* Les liens du menu sont blancs sur le fond bleu. */
+.menu a:not(.bouton) {
+  color: #fff;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+/* Un trait saumon apparaît au survol. */
+.menu a:not(.bouton):hover {
+  text-decoration: underline;
+  text-decoration-color: var(--saumon);
+}
+
+/* Le bouton principal : rouge et très arrondi, comme sur le site de l'ISEN. */
+.bouton {
+  display: inline-block;
+  padding: 10px 24px;
+  border: 2px solid var(--rouge);
+  border-radius: 999px;
+  color: #fff;
+  background: var(--rouge);
+  font: inherit;
+  font-weight: 700;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+/* Le bouton s'assombrit au survol pour montrer qu'il est cliquable. */
+.bouton:hover {
+  border-color: #b0002a;
+  background: #b0002a;
+}
+
+/* Le bouton à contour blanc, pour le fond bleu de l'en-tête. */
+.bouton-contour {
+  border-color: #fff;
+  background: transparent;
+}
+
+/* Le bouton secondaire, pour les actions moins importantes. */
+.bouton-secondaire {
+  color: var(--rouge);
+  background: #fff;
+}
+
+/* Au survol, le texte du bouton secondaire reste lisible. */
+.bouton-secondaire:hover {
+  color: #fff;
+}
+
+/* La bande de message après une action. */
+.message {
+  margin: 0;
+  padding: 12px 40px;
+  color: var(--bleu);
+  background: #fde6d9;
+  font-weight: 600;
+}
+
+/* Le grand bandeau : un dégradé bleu posé sur la photo du campus. */
+.banniere {
+  padding: 96px 40px;
+  color: #fff;
+  background: linear-gradient(90deg, rgba(0, 56, 121, 0.92), rgba(0, 56, 121, 0.45)), url('/images/campus.jpg') center / cover;
+}
+
+/* Le texte du bandeau garde une largeur confortable. */
+.banniere-texte {
+  max-width: 620px;
+}
+
+/* Le titre du bandeau est blanc pour rester lisible sur le fond sombre. */
+.banniere h1 {
+  margin: 8px 0 16px;
+  color: #fff;
+  font-size: clamp(32px, 5vw, 52px);
+}
+
+/* La petite ligne au-dessus du titre. */
+.surtitre {
+  margin: 0;
+  color: var(--saumon);
+  font-weight: 700;
+}
+
+/* Une section de contenu, centrée sur la page. */
+.section {
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: 48px 24px;
+}
+
+/* La grille s'adapte toute seule à la largeur de l'écran. */
+.grille {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 24px;
+}
+
+/* Une carte blanche avec des coins arrondis. */
+.carte {
+  padding: 24px;
+  border: 1px solid #dde5ee;
+  border-radius: 16px;
+  background: #fff;
+}
+
+/* On réduit l'espace autour des titres de carte. */
+.carte h3 {
+  margin: 8px 0;
+}
+
+/* Le texte de la carte reste compact. */
+.carte p {
+  margin: 4px 0;
+}
+
+/* Les titres de cartes sont des liens sans soulignement. */
+.carte h3 a {
+  text-decoration: none;
+}
+
+/* Les chiffres du tableau de bord. */
+.chiffre strong {
+  display: block;
+  color: var(--rouge);
+  font-size: 40px;
+  font-weight: 800;
+}
+
+/* La petite étiquette de catégorie. */
+.etiquette {
+  display: inline-block;
+  padding: 2px 12px;
+  border-radius: 999px;
+  color: var(--bleu);
+  background: #fde6d9;
+  font-size: 14px;
+  font-weight: 700;
+}
+
+/* La date ressort en gras. */
+.date {
+  color: var(--rouge);
+  font-weight: 700;
+}
+
+/* Le texte secondaire. */
+.discret {
+  display: block;
+  color: var(--discret);
+  font-size: 14px;
+}
+
+/* Le message de confirmation d'inscription. */
+.confirme {
+  color: #0a7a3e;
+  font-weight: 700;
+}
+
+/* Le logo d'une association. */
+.logo-asso {
+  display: block;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+/* La lettre affichée quand l'association n'a pas de logo. */
+.logo-lettre {
+  color: #fff;
+  background: var(--bleu);
+  font-size: 24px;
+  font-weight: 800;
+  line-height: 56px;
+  text-align: center;
+}
+
+/* Le bloc bleu avec la photo : l'image à gauche, le texte à droite. */
+.bloc-bleu {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  gap: 40px;
+  padding: 48px 40px;
+  color: #fff;
+  background: var(--bleu);
+}
+
+/* La photo du bloc bleu garde une hauteur raisonnable. */
+.bloc-bleu img {
+  display: block;
+  width: 100%;
+  height: 380px;
+  border-radius: 16px;
+  object-fit: cover;
+}
+
+/* Le titre du bloc est blanc sur le fond bleu. */
+.bloc-bleu h2 {
+  color: #fff;
+}
+
+/* La barre de recherche et de filtre. */
+.filtres {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  gap: 16px;
+  margin-bottom: 32px;
+}
+
+/* Les libellés sont au-dessus de leur champ. */
+label {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  font-weight: 600;
+}
+
+/* Les champs de saisie partagent le même style. */
+input,
+select,
+textarea {
+  padding: 10px 12px;
+  border: 1px solid #b9c6d4;
+  border-radius: 8px;
+  font: inherit;
+}
+
+/* Le formulaire public est étroit et centré. */
+.formulaire {
+  max-width: 460px;
+}
+
+/* Les champs du formulaire public sont empilés. */
+.formulaire form,
+.formulaire-admin {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+/* Le formulaire du back-office garde une largeur lisible. */
+.formulaire-admin {
+  max-width: 560px;
+}
+
+/* Le bouton garde sa taille naturelle dans les formulaires empilés. */
+.formulaire .bouton,
+.formulaire-admin .bouton {
+  align-self: flex-start;
+}
+
+/* La fiche d'un événement garde des lignes faciles à lire. */
+.fiche {
+  max-width: 760px;
+}
+
+/* Une liste simple sans puces. */
+.liste {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+/* Chaque ligne est séparée par un trait fin. */
+.liste li {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 12px 0;
+  border-bottom: 1px solid #dde5ee;
+}
+
+/* Le pied de page. */
+.pied {
+  padding: 24px 40px;
+  color: #fff;
+  background: var(--bleu);
+  font-size: 14px;
+}
+
+/* Le back-office : le menu à gauche et le contenu à droite. */
+.admin {
+  display: flex;
+  min-height: 100vh;
+  background: var(--fond);
+}
+
+/* Le menu latéral du back-office. */
+.admin-menu {
+  flex: 0 0 240px;
+  padding: 24px;
+  background: var(--bleu);
+}
+
+/* Le logo du menu latéral. */
+.admin-menu img {
+  display: block;
+  width: 100%;
+  margin-bottom: 32px;
+}
+
+/* Les liens du menu latéral sont empilés. */
+.admin-menu nav {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+/* Les liens sont blancs sur le fond bleu. */
+.admin-menu nav a {
+  color: #fff;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+/* La zone principale du back-office. min-width évite que le tableau l'élargisse. */
+.admin-contenu {
+  flex: 1;
+  min-width: 0;
+  padding: 32px;
+}
+
+/* Le message reste aligné avec le contenu du back-office. */
+.admin-contenu .message {
+  padding: 12px 16px;
+  border-radius: 8px;
+}
+
+/* Le conteneur permet de faire défiler un tableau large. */
+.tableau-conteneur {
+  overflow-x: auto;
+  border-radius: 12px;
+  background: #fff;
+}
+
+/* Le tableau occupe toute la largeur. */
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+/* Les cellules sont aérées et séparées par un trait. */
+th,
+td {
+  padding: 12px 16px;
+  border-bottom: 1px solid #dde5ee;
+  text-align: left;
+}
+
+/* L'en-tête du tableau est en bleu. */
+th {
+  color: var(--bleu);
+}
+
+/* Les actions d'une ligne sont côte à côte. */
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px;
+}
+
+/* Un bouton de formulaire qui ressemble à un lien. */
+.lien {
+  padding: 0;
+  border: 0;
+  color: var(--bleu);
+  background: none;
+  font: inherit;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+/* La suppression est en rouge pour attirer l'attention. */
+.lien-danger {
+  color: var(--rouge);
+}
+
+/* Sur petit écran, on réduit les marges et on empile les blocs. */
+@media (max-width: 768px) {
+  /* Les marges de l'en-tête diminuent. */
+  .entete,
+  .message,
+  .pied {
+    padding-right: 16px;
+    padding-left: 16px;
+  }
+
+  /* Le bandeau prend moins de place. */
+  .banniere {
+    padding: 56px 16px;
+  }
+
+  /* La photo passe au-dessus du texte. */
+  .bloc-bleu {
+    grid-template-columns: 1fr;
+    padding: 32px 16px;
+  }
+
+  /* Le back-office passe sur une seule colonne. */
+  .admin {
+    flex-direction: column;
+  }
+
+  /* Le menu latéral s'étire sur toute la largeur. */
+  .admin-menu {
+    flex-basis: auto;
+  }
+
+  /* Le logo garde une petite taille. */
+  .admin-menu img {
+    width: 160px;
+    margin-bottom: 16px;
+  }
+
+  /* Le contenu perd un peu de marge. */
+  .admin-contenu {
+    padding: 16px;
+  }
+}

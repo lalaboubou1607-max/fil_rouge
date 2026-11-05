@@ -1,0 +1,36 @@
+<%# Tableau des associations gérées par l'utilisateur. %>
+<%- include('../partials/admin-tete') %>
+<h1>Associations</h1>
+<%# Seul un administrateur peut créer une association. %>
+<% if (utilisateur.role === 'admin') { %>
+  <p><a class="bouton" href="/admin/associations/nouvelle">Nouvelle association</a></p>
+<% } %>
+<%# Le conteneur permet de faire défiler le tableau sur un téléphone. %>
+<div class="tableau-conteneur">
+  <table>
+    <thead>
+      <tr><th>Nom</th><th>Contact</th><th>Statut</th><th>Actions</th></tr>
+    </thead>
+    <tbody>
+      <%# Une ligne par association. %>
+      <% associations.forEach((association) => { %>
+        <tr>
+          <td><%= association.nom %></td>
+          <td><%= association.contact %></td>
+          <td><%= association.statut %></td>
+          <td class="actions">
+            <a href="/admin/associations/<%= association._id %>/modifier">Modifier</a>
+            <%# Le bouton d'activation est réservé aux administrateurs. %>
+            <% if (utilisateur.role === 'admin') { %>
+              <form method="post" action="/admin/associations/<%= association._id %>/statut">
+                <%- include('../partials/csrf') %>
+                <button class="lien"><%= association.statut === 'active' ? 'Désactiver' : 'Activer' %></button>
+              </form>
+            <% } %>
+          </td>
+        </tr>
+      <% }) %>
+    </tbody>
+  </table>
+</div>
+<%- include('../partials/admin-pied') %>

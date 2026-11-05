@@ -1,0 +1,30 @@
+<%# Le même formulaire sert à créer et à modifier un événement. %>
+<%- include('../partials/admin-tete') %>
+<h1><%= titre %></h1>
+<form class="formulaire-admin" method="post" action="<%= evenement ? `/admin/evenements/${evenement._id}/modifier` : '/admin/evenements/nouveau' %>">
+  <%- include('../partials/csrf') %>
+  <label>Titre <input name="titre" value="<%= evenement?.titre ?? '' %>" required></label>
+  <label>Description <textarea name="description" rows="5" required><%= evenement?.description ?? '' %></textarea></label>
+  <%# dateFormulaire écrit la date dans le format attendu par ce champ. %>
+  <label>Date et heure <input type="datetime-local" name="date" value="<%= evenement ? dateFormulaire(evenement.date) : '' %>" required></label>
+  <label>Lieu <input name="lieu" value="<%= evenement?.lieu ?? '' %>" required></label>
+  <label>Capacité <input type="number" name="capacite" min="1" value="<%= evenement?.capacite ?? '' %>" required></label>
+  <label>Catégorie
+    <select name="categorie" required>
+      <%# Une option par catégorie, celle de l'événement reste choisie. %>
+      <% categories.forEach((nom) => { %>
+        <option value="<%= nom %>" <%= evenement?.categorie === nom ? 'selected' : '' %>><%= nom %></option>
+      <% }) %>
+    </select>
+  </label>
+  <label>Association
+    <select name="association" required>
+      <%# Seules les associations gérées par l'utilisateur sont proposées. %>
+      <% associations.forEach((association) => { %>
+        <option value="<%= association._id %>" <%= String(evenement?.association) === String(association._id) ? 'selected' : '' %>><%= association.nom %></option>
+      <% }) %>
+    </select>
+  </label>
+  <button class="bouton">Enregistrer</button>
+</form>
+<%- include('../partials/admin-pied') %>

@@ -1,0 +1,24 @@
+<%# Fiche d'une association et de ses événements à venir. %>
+<%- include('../partials/tete') %>
+<section class="section">
+  <p><a href="/associations">Retour aux associations</a></p>
+  <h1><%= association.nom %></h1>
+  <p><%= association.description %></p>
+  <p><strong>Contact :</strong> <%= association.contact %></p>
+
+  <h2>Événements à venir</h2>
+  <%# Si la liste est vide, on l'explique. %>
+  <% if (evenements.length === 0) { %>
+    <p>Aucun événement à venir.</p>
+  <% } %>
+  <ul class="liste">
+    <%# Une ligne par événement. %>
+    <% evenements.forEach((evenement) => { %>
+      <li>
+        <a href="/evenements/<%= evenement._id %>"><%= evenement.titre %></a>
+        <span class="discret"><%= formaterDate(evenement.date) %></span>
+      </li>
+    <% }) %>
+  </ul>
+</section>
+<%- include('../partials/pied') %>

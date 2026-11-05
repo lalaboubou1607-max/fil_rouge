@@ -1,0 +1,11 @@
+<%# Carte d'un événement, réutilisée sur l'accueil et sur la liste. %>
+<article class="carte">
+  <%# La catégorie sert de petite étiquette. %>
+  <span class="etiquette"><%= evenement.categorie %></span>
+  <h3><a href="/evenements/<%= evenement._id %>"><%= evenement.titre %></a></h3>
+  <%# formaterDate écrit la date en français. %>
+  <p class="date"><%= formaterDate(evenement.date) %></p>
+  <p><%= evenement.lieu %></p>
+  <%# L'association vient de populate dans le contrôleur. %>
+  <p class="discret">Organisé par <%= evenement.association.nom %></p>
+</article>

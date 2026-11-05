@@ -1,0 +1,50 @@
+<%# Page d'accueil. include ajoute le haut de page commun. %>
+<%- include('../partials/tete') %>
+
+<%# Grand bandeau : la photo du campus est placée en fond par le CSS. %>
+<section class="banniere">
+  <div class="banniere-texte">
+    <p class="surtitre">Toulon et Marseille</p>
+    <h1>La vie associative de l'école, au même endroit</h1>
+    <p>Découvre les associations, trouve ton prochain événement et inscris-toi en quelques clics.</p>
+    <a class="bouton" href="/evenements">Voir les événements</a>
+  </div>
+</section>
+
+<%# Les trois prochains événements. %>
+<section class="section">
+  <h2>Prochains événements</h2>
+  <%# On prévoit le cas où il n'y a rien à afficher. %>
+  <% if (evenements.length === 0) { %>
+    <p>Aucun événement à venir pour le moment.</p>
+  <% } %>
+  <div class="grille">
+    <%# La boucle crée une carte par événement. %>
+    <% evenements.forEach((evenement) => { %>
+      <%- include('../partials/carte-evenement', { evenement }) %>
+    <% }) %>
+  </div>
+</section>
+
+<%# Un bloc bleu avec une photo, comme les blocs du site de l'ISEN. %>
+<section class="bloc-bleu">
+  <img src="/images/vie-etudiante.jpg" alt="Étudiants réunis devant le campus">
+  <div>
+    <h2>Une école, plein d'associations</h2>
+    <p>Sport, culture, technologie, solidarité : chaque association fait vivre le campus toute l'année.</p>
+    <a class="bouton" href="/associations">Découvrir les associations</a>
+  </div>
+</section>
+
+<%# Quelques associations. %>
+<section class="section">
+  <h2>Associations</h2>
+  <div class="grille">
+    <% associations.forEach((association) => { %>
+      <%- include('../partials/carte-association', { association }) %>
+    <% }) %>
+  </div>
+</section>
+
+<%# include ajoute le bas de page commun. %>
+<%- include('../partials/pied') %>

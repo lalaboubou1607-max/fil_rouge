@@ -1,0 +1,16 @@
+<%# Liste de toutes les associations actives. %>
+<%- include('../partials/tete') %>
+<section class="section">
+  <h1>Associations</h1>
+  <%# On prévoit le cas d'une liste vide. %>
+  <% if (associations.length === 0) { %>
+    <p>Aucune association pour le moment.</p>
+  <% } %>
+  <div class="grille">
+    <%# Une carte par association. %>
+    <% associations.forEach((association) => { %>
+      <%- include('../partials/carte-association', { association }) %>
+    <% }) %>
+  </div>
+</section>
+<%- include('../partials/pied') %>

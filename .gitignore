@@ -1,0 +1,6 @@
+# Les bibliothèques se réinstallent avec "npm install" : inutile de les envoyer sur Git.
+node_modules/
+# Le JavaScript généré se recrée avec "npm run build".
+dist/
+# Le fichier .env contient des secrets : il ne doit jamais aller sur Git.
+.env

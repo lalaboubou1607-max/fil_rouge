@@ -1,0 +1,23 @@
+<%# Tableau des comptes, visible par les administrateurs. %>
+<%- include('../partials/admin-tete') %>
+<h1>Utilisateurs</h1>
+<div class="tableau-conteneur">
+  <table>
+    <thead>
+      <tr><th>Nom</th><th>Email</th><th>Rôle</th><th>Association</th><th>Actions</th></tr>
+    </thead>
+    <tbody>
+      <%# On n'utilise pas "utilisateur" ici : ce nom désigne déjà la personne connectée. %>
+      <% utilisateurs.forEach((compte) => { %>
+        <tr>
+          <td><%= compte.prenom %> <%= compte.nom %></td>
+          <td><%= compte.email %></td>
+          <td><%= compte.role %></td>
+          <td><%= compte.association?.nom ?? '' %></td>
+          <td class="actions"><a href="/admin/utilisateurs/<%= compte._id %>/modifier">Modifier les droits</a></td>
+        </tr>
+      <% }) %>
+    </tbody>
+  </table>
+</div>
+<%- include('../partials/admin-pied') %>

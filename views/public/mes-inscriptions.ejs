@@ -1,0 +1,25 @@
+<%# Liste des inscriptions de l'étudiant connecté. %>
+<%- include('../partials/tete') %>
+<section class="section">
+  <h1>Mes inscriptions</h1>
+  <%# Si la liste est vide, on propose d'aller voir les événements. %>
+  <% if (inscriptions.length === 0) { %>
+    <p>Tu n'es inscrit à aucun événement. <a href="/evenements">Voir les événements</a></p>
+  <% } %>
+  <ul class="liste">
+    <%# Une ligne par inscription. %>
+    <% inscriptions.forEach((inscription) => { %>
+      <li>
+        <div>
+          <a href="/evenements/<%= inscription.evenement._id %>"><%= inscription.evenement.titre %></a>
+          <span class="discret"><%= formaterDate(inscription.evenement.date) %></span>
+        </div>
+        <form method="post" action="/mes-inscriptions/<%= inscription._id %>/annuler">
+          <%- include('../partials/csrf') %>
+          <button class="bouton bouton-secondaire">Annuler</button>
+        </form>
+      </li>
+    <% }) %>
+  </ul>
+</section>
+<%- include('../partials/pied') %>

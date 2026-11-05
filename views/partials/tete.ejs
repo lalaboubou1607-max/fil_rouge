@@ -1,0 +1,48 @@
+<%# Haut de page commun au site public : il est inclus au début de chaque page. %>
+<!doctype html>
+<html lang="fr">
+<head>
+  <%# charset gère les accents, viewport adapte la page aux téléphones. %>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <%# Le titre de l'onglet vient du contrôleur. %>
+  <title><%= titre %> | Vie associative ISEN</title>
+  <%# La police Plus Jakarta Sans, la même que sur le site de l'ISEN. %>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap">
+  <%# Notre feuille de style. %>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+  <%# L'en-tête bleu marine avec le logo blanc. %>
+  <header class="entete">
+    <a class="entete-logo" href="/">
+      <img src="/images/logo-isen.png" alt="ISEN Méditerranée, accueil">
+    </a>
+    <%# Le menu principal. %>
+    <nav class="menu" aria-label="Menu principal">
+      <a href="/evenements">Événements</a>
+      <a href="/associations">Associations</a>
+      <%# Ce test affiche des liens différents selon le visiteur. %>
+      <% if (locals.utilisateur) { %>
+        <a href="/mes-inscriptions">Mes inscriptions</a>
+        <%# Le lien du back-office n'apparaît que pour les rôles autorisés. %>
+        <% if (utilisateur.role !== 'etudiant') { %>
+          <a href="/admin">Back-office</a>
+        <% } %>
+        <%# La déconnexion est un formulaire car elle modifie la session. %>
+        <form method="post" action="/deconnexion">
+          <%- include('csrf') %>
+          <button class="bouton bouton-contour">Déconnexion</button>
+        </form>
+      <% } else { %>
+        <a href="/connexion">Connexion</a>
+        <a class="bouton" href="/inscription">Créer un compte</a>
+      <% } %>
+    </nav>
+  </header>
+  <%# Ce message vient de l'action précédente, puis il disparaît. %>
+  <% if (locals.message) { %>
+    <p class="message" role="status"><%= message %></p>
+  <% } %>
+  <main>

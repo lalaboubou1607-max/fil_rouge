@@ -1,0 +1,18 @@
+<%# Formulaire de création de compte. %>
+<%- include('../partials/tete') %>
+<section class="section formulaire">
+  <h1>Créer un compte</h1>
+  <form method="post" action="/inscription">
+    <%- include('../partials/csrf') %>
+    <label>Prénom <input name="prenom" autocomplete="given-name" required></label>
+    <label>Nom <input name="nom" autocomplete="family-name" required></label>
+    <label>Email <input type="email" name="email" autocomplete="email" required></label>
+    <%# minlength vérifie la longueur dans le navigateur, le serveur revérifie ensuite. %>
+    <label>Mot de passe (8 caractères minimum)
+      <input type="password" name="motDePasse" minlength="8" autocomplete="new-password" required>
+    </label>
+    <button class="bouton">Créer mon compte</button>
+  </form>
+  <p>Déjà un compte ? <a href="/connexion">Se connecter</a></p>
+</section>
+<%- include('../partials/pied') %>

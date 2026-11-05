@@ -1,0 +1,11 @@
+<%# Carte d'une association, réutilisée sur l'accueil et sur la liste. %>
+<article class="carte">
+  <%# On affiche le logo s'il existe, sinon la première lettre du nom. %>
+  <% if (association.logo) { %>
+    <img class="logo-asso" src="<%= association.logo %>" alt="Logo de <%= association.nom %>">
+  <% } else { %>
+    <span class="logo-asso logo-lettre" aria-hidden="true"><%= association.nom.charAt(0) %></span>
+  <% } %>
+  <h3><a href="/associations/<%= association._id %>"><%= association.nom %></a></h3>
+  <p><%= association.description %></p>
+</article>

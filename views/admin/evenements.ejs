@@ -1,0 +1,36 @@
+<%# Tableau des événements gérés par l'utilisateur. %>
+<%- include('../partials/admin-tete') %>
+<h1>Événements</h1>
+<p><a class="bouton" href="/admin/evenements/nouveau">Nouvel événement</a></p>
+<div class="tableau-conteneur">
+  <table>
+    <thead>
+      <tr><th>Titre</th><th>Date</th><th>Association</th><th>Inscrits</th><th>État</th><th>Actions</th></tr>
+    </thead>
+    <tbody>
+      <%# Une ligne par événement. %>
+      <% evenements.forEach((evenement) => { %>
+        <tr>
+          <td><%= evenement.titre %></td>
+          <td><%= formaterDate(evenement.date) %></td>
+          <td><%= evenement.association?.nom %></td>
+          <td><%= evenement.nbInscrits %> / <%= evenement.capacite %></td>
+          <td><%= evenement.publie ? 'Publié' : 'Brouillon' %></td>
+          <td class="actions">
+            <a href="/admin/evenements/<%= evenement._id %>/modifier">Modifier</a>
+            <a href="/admin/evenements/<%= evenement._id %>/inscrits">Inscrits</a>
+            <form method="post" action="/admin/evenements/<%= evenement._id %>/publication">
+              <%- include('../partials/csrf') %>
+              <button class="lien"><%= evenement.publie ? 'Dépublier' : 'Publier' %></button>
+            </form>
+            <form method="post" action="/admin/evenements/<%= evenement._id %>/supprimer">
+              <%- include('../partials/csrf') %>
+              <button class="lien lien-danger">Supprimer</button>
+            </form>
+          </td>
+        </tr>
+      <% }) %>
+    </tbody>
+  </table>
+</div>
+<%- include('../partials/admin-pied') %>
